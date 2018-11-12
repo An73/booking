@@ -1,0 +1,62 @@
+<html>
+<body>
+<div>List rooms</div>
+<table align="center">
+    <tr>
+        <td>
+            <form>
+            <input type="button" onclick="location.href='/create'" value="Create User" />
+            </form>
+        </td>
+    </tr>
+</table>
+<form method="post" action="datefilter">
+    <table align="center">
+        <tr>
+            <th>Check in</th>
+            <th>Check out</th>
+        </tr>
+        <tr>
+            <td><input type="date" name="check_in" placeholder="Check in"></td>
+            <td><input type="date" name="check_out" placeholder="Check out"></td>
+            <td><button type="submit">View</button></td>
+        </tr>
+    </table>
+</form>
+
+<form method="post" action="filter">
+<table align="center">
+    <tr>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>
+            <select name="category">
+                <option value="1 adult">1 adult</option>
+                <option value="2 adults">2 adults</option>
+                <option value="4 adults">4 adults</option>
+            </select>
+        </td>
+        <td><input type="number" min="1" name="price"></td>
+        <td><button type="submit">Filter</button></td>
+    </tr>
+</table>
+</form>
+
+<table align="center">
+    <tr>
+        <th>Number</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    {{#rooms}}
+        <tr>
+            <td>{{numb}}</td>
+            <td>{{category}}</td>
+            <td>{{price}} $</td>
+        </tr>
+    {{/rooms}}
+</table>
+</body>
+</html>

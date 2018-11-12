@@ -1,0 +1,45 @@
+<html>
+<body>
+<form method="post" action="/create/created">
+    <table align="center">
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" name="first_name"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="last_name"></td>
+        </tr>
+        <tr>
+            <td>Nickname</td>
+            <td><input type="text" name="nickname"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Create</button></td>
+        </tr>
+    </table>
+</form>
+{{#error}}
+    <div align="center">Error: invalid data or nickname is busy</div>
+{{/error}}
+{{#users}}
+    <table align="center">
+        <tr>
+            <td>User created</td>
+        </tr>
+        <tr>
+            <td>First Name: </td>
+            <td>{{first_name}}</td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td>{{last_name}}</td>
+        </tr>
+        <tr>
+            <td>Nickname: </td>
+            <td>{{nickname}}</td>
+        </tr>
+    </table>
+{{/users}}
+</body>
+</html>

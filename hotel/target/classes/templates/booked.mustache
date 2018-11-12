@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/html">
+<body>
+<div align="center">Select or create user</div>
+<table align="center">
+    <tr>
+        <th>
+            <select name="users">
+                {{#users}}
+                <option value={{nickname}}>{{nickname}}</option>
+                {{/users}}
+            </select>
+        </th>
+        <form>
+        <th>
+            <input type="button" onclick="location.href='/create'" value="Create User" />
+        </th>
+        </form>
+    </tr>
+</table>
+<form method="post" action="/booked/datefilter">
+    <table align="center">
+        <tr>
+            <th>Check in</th>
+            <th>Check out</th>
+        </tr>
+        <tr>
+            <td><input type="date" name="check_in" placeholder="Check in"></td>
+            <td><input type="date" name="check_out" placeholder="Check out"></td>
+            <td><button type="submit">View</button></td>
+        </tr>
+    </table>
+</form>
+<form method="post" action="/booked/filtercategory">
+    <table align="center">
+        <tr>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>
+                <select name="category">
+                    <option value="1 adult">1 adult</option>
+                    <option value="2 adults">2 adults</option>
+                    <option value="4 adults">4 adults</option>
+                </select>
+            </td>
+            <td><input type="number" min="1" name="price"></td>
+            <td><button type="submit">Filter</button></td>
+        </tr>
+    </table>
+</form>
+{{#error}}
+    <div align="center">Please enter date</div>
+{{/error}}
+
+
+{{#total}}
+    <table align="center">
+        <tr align="center">
+            <td>Check in</td>
+            <td>Check out</td>
+            <td>Number room</td>
+            <td>Total price</td>
+        </tr>
+        <tr align="center">
+            <td>{{check_in}}</td>
+            <td>{{check_out}}</td>
+            <td>{{number_room}}</td>
+            <td>{{totalprice}}</td>
+        </tr>
+    </table>
+{{/total}}
+
+
+<table align="center">
+    <tr>
+        <th>Number</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Breakfast (3 $)</th>
+        <th>Cleaning (1 $)</th>
+    </tr>
+    {{#rooms}}
+        <tr>
+            <td>{{numb}}</td>
+            <td>{{category}}</td>
+            <td>{{price}} $</td>
+            <form method="post" action="/booked/total">
+                <td>
+                    <input type="checkbox" name="breakfast">
+                </td>
+                <td>
+                    <input type="checkbox" name="cleaning">
+                </td>
+                <td>
+                    <button type="submit" name="numb" value={{numb}} >total</button>
+                </td>
+            </form>
+
+        </tr>
+    {{/rooms}}
+</table>
+</body>
+</html>

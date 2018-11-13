@@ -14,6 +14,6 @@ public class Cleaning extends AdditionalOption {
 
     @Override
     public String getAdditionalOptions() {
-        return priceForDay.getAdditionalOptions() + " Cleaning";
+        return priceForDay.getAdditionalOptions() + " Cleaning ";
     }
 }

@@ -31,11 +31,10 @@ import java.util.Map;
 public class BookedController {
 
     private List<Room> rooms;
-    private List<User> users;
     private PriceForDay priceForDay;
     private Date dateCheckIn = null;
     private Date dateCheckOut = null;
-    private int total;
+    private Integer total;
 
     @Autowired
     private RoomRepo roomRepo;
@@ -51,8 +50,6 @@ public class BookedController {
         //Iterable<RoomPrice> rooms = roomRepo.findAll();
         //model.put("rooms", rooms);
         //a++;
-        users = (List<User>)userRepo.findAll();
-        model.put("users", users);
         return "booked";
     }
 
@@ -91,20 +88,25 @@ public class BookedController {
                          Map<String, Object> model) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         System.out.println(number);
+        totalPrice(breakfast, cleaning, number);
         /*int cost = roomRepo.findPriceByNumb(number);
         priceForDay = new RoomPrice(number, cost);
-        if (breakfast != null)
+        if (breakfast != null) {
             priceForDay = new Breakfast(priceForDay);
+            System.out.println("breakfast+++++");
+        }
         if (cleaning != null)
             priceForDay = new Cleaning(priceForDay);
 
         total = (int) (dateCheckOut.getTime() - dateCheckIn.getTime()) / 86400000 + 1;
         total *= priceForDay.getCost();*/
-        totalPrice(breakfast, cleaning, number);
-        System.out.println("total: " + total);
-        System.out.println(priceForDay.getCost());
+        //totalPrice(breakfast, cleaning, number);
+        //System.out.println("total: " + total);
+        //System.out.println(priceForDay.getCost());
         //System.out.println(category);
         //Iterable<RoomPrice> rooms = roomRepo.findAll();
+        List<User> users = (List<User>)userRepo.findAll();
+        model.put("users", users);
         model.put("check_in", dateFormat.format(dateCheckIn));
         model.put("check_out", dateFormat.format(dateCheckOut));
         model.put("number_room", number);
@@ -118,17 +120,30 @@ public class BookedController {
 
     @PostMapping("book")
     public String book(@RequestParam("numb") Integer number,
-                       @RequestParam(value = "breakfast", required = false) String breakfast,
-                       @RequestParam(value = "cleaning", required = false) String cleaning,
-                       @RequestParam("users") String user,
+                       @RequestParam("nickname") String nickname,
                        Map<String, Object> model) {
-        if (priceForDay != null)
-            bookedRepo.insertBooked(number, dateCheckIn, dateCheckOut, priceForDay.getAdditionalOptions(), user);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        /*System.out.println("numb: " + number + " nickname: " + nickname);
+
+        System.out.println(number + "|" + dateFormat.format(dateCheckIn) + "|" + dateFormat.format(dateCheckOut) +
+        "|" + priceForDay.getAdditionalOptions() + "|" + total + "|" + nickname);*/
+        if (nickname != null) {
+            bookedRepo.insertBooked(number, dateCheckIn, dateCheckOut, priceForDay.getAdditionalOptions(), total, nickname);
+            model.put("booked", true);
+            model.put("number_room", number);
+            model.put("check_in", dateFormat.format(dateCheckIn));
+            model.put("check_out", dateFormat.format(dateCheckOut));
+            model.put("addopt", priceForDay.getAdditionalOptions());
+            model.put("user", nickname);
+            model.put("totalprice", total);
+        }
+
+        return "booked";
     }
 
     private void totalPrice(String breakfast, String cleaning, Integer number){
         int cost = roomRepo.findPriceByNumb(number);
-        priceForDay = new RoomPrice(number, cost);
+        priceForDay = new RoomPrice(cost);
         if (breakfast != null)
             priceForDay = new Breakfast(priceForDay);
         if (cleaning != null)

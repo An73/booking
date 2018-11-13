@@ -11,14 +11,14 @@ import java.util.Date;
 
 public interface BookedRepo extends CrudRepository<Booked, Long> {
     @Modifying
-    @Query(value = "INSERT INTO Booked(NUMB, CHECK_IN, CHECK_OUT, ADDITION_OPTION, USER) " +
-            "VALUES (:numb, :check_in, :check_out, :addition_option, :user)",
+    @Query(value = "INSERT INTO Booked(NUMB, CHECK_IN, CHECK_OUT, ADDITION_OPTION, TOTALPRICE, USER) " +
+            "VALUES (:numb, :check_in, :check_out, :addition, :totalprice, :user)",
             nativeQuery = true)
     @Transactional
     void insertBooked(@Param("numb") Integer numb,
                       @Param("check_in") Date check_in,
                       @Param("check_out") Date check_out,
-                      @Param("addition_option") String addition_option,
-                      @Param("totalprice") Integer totalprice,
+                      @Param("addition") String addition,
+                      @Param("totalprice") int totalprice,
                       @Param("user") String user);
 }

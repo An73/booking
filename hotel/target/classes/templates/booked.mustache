@@ -1,22 +1,5 @@
 <html xmlns="http://www.w3.org/1999/html">
 <body>
-<div align="center">Select or create user</div>
-<table align="center">
-    <tr>
-        <th>
-            <select name="users">
-                {{#users}}
-                <option value={{nickname}}>{{nickname}}</option>
-                {{/users}}
-            </select>
-        </th>
-        <form>
-        <th>
-            <input type="button" onclick="location.href='/create'" value="Create User" />
-        </th>
-        </form>
-    </tr>
-</table>
 <form method="post" action="/booked/datefilter">
     <table align="center">
         <tr>
@@ -55,6 +38,25 @@
 
 
 {{#total}}
+    <div align="center">Select or create a user to book</div>
+    <table align="center">
+        <tr>
+            <th>
+                <select name="nickname" form="bookForm">
+                    {{#users}}
+                        <option value={{nickname}}>{{nickname}}</option>
+                    {{/users}}
+                </select>
+            </th>
+            <form>
+                <th>
+                    <input type="button" onclick="location.href='/create'" value="Create User" />
+                </th>
+            </form>
+        </tr>
+    </table>
+
+
     <table align="center">
         <tr align="center">
             <td>Check in</td>
@@ -67,11 +69,16 @@
             <td>{{check_out}}</td>
             <td>{{number_room}}</td>
             <td>{{totalprice}}</td>
+            <form method="post" action="/booked/book" id="bookForm">
+                <td>
+                    <button type="submit" name="numb" value={{number_room}} >To Book</button>
+                </td>
+            </form>
         </tr>
     </table>
 {{/total}}
 
-
+{{#rooms}}
 <table align="center">
     <tr>
         <th>Number</th>
@@ -80,7 +87,6 @@
         <th>Breakfast (3 $)</th>
         <th>Cleaning (1 $)</th>
     </tr>
-    {{#rooms}}
         <tr>
             <td>{{numb}}</td>
             <td>{{category}}</td>
@@ -93,12 +99,41 @@
                     <input type="checkbox" name="cleaning">
                 </td>
                 <td>
-                    <button type="submit" name="numb" value={{numb}} >total</button>
+                    <button type="submit" name="numb" value={{numb}}>Total Price</button>
                 </td>
             </form>
-
         </tr>
-    {{/rooms}}
 </table>
+{{/rooms}}
+
+{{#booked}}
+    <div align="center">Room successfully booked</div>
+    <table align="center">
+        <tr>
+            <td>Number Room</td>
+            <td>{{number_room}}</td>
+        </tr>
+        <tr>
+            <td>Check in</td>
+            <td>{{check_in}}</td>
+        </tr>
+        <tr>
+            <td>Check out</td>
+            <td>{{check_out}}</td>
+        </tr>
+        <tr>
+            <td>Additional option</td>
+            <td>{{addopt}}</td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>{{user}}</td>
+        </tr>
+        <tr>
+            <td>Total Price</td>
+            <td>{{totalprice}}</td>
+        </tr>
+    </table>
+{{/booked}}
 </body>
 </html>

@@ -13,6 +13,12 @@ public class Booked {
     @Column(name = "numb")
     private Integer numb;
 
+    @Column(name = "addition_option")
+    private String addition_option;
+
+    @Column(name = "totalprice")
+    private String totalprice;
+
     @Column(name = "check_in")
     private Date check_in;
 
@@ -63,5 +69,21 @@ public class Booked {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getAddition_option() {
+        return addition_option;
+    }
+
+    public void setAddition_option(String addition_option) {
+        this.addition_option = addition_option;
+    }
+
+    public String getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(String totalprice) {
+        this.totalprice = totalprice;
     }
 }

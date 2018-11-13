@@ -3,6 +3,7 @@ package com.hotel.booking.filter;
 import com.hotel.booking.domain.Room;
 import com.hotel.booking.repos.RoomRepo;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class Datefilter {
@@ -28,12 +29,16 @@ public class Datefilter {
             roomsBooked = roomRepo.findC(check_in, check_out);
             rooms = (List<Room>) roomRepo.findAll();
 
-            for (Room roomB : roomsBooked) {
+            Iterator<Room> roomB = roomsBooked.iterator();
+            while (roomB.hasNext()){
+                rooms.removeIf(room1 -> roomB.next().getNumb() == room1.getNumb());
+            }
+            /*for (Room roomB : roomsBooked) {
                 for (Room room : rooms) {
                     if (roomB.getNumb() == room.getNumb())
                         rooms.remove(room);
                 }
-            }
+            }*/
         }
         return rooms;
     }

@@ -4,8 +4,7 @@ public class RoomPrice extends PriceForDay {
 
     int cost;
 
-    public RoomPrice(int number, int cost){
-        super.number = number;
+    public RoomPrice(int cost){
         this.cost = cost;
     }
 

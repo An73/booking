@@ -17,6 +17,6 @@ public class Breakfast extends AdditionalOption {
 
     @Override
     public String getAdditionalOptions() {
-        return priceForDay.getAdditionalOptions() + " Breakfast";
+        return priceForDay.getAdditionalOptions() + " Breakfast ";
     }
 }

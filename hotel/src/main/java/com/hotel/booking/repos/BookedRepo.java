@@ -1,7 +1,6 @@
 package com.hotel.booking.repos;
 
 import com.hotel.booking.domain.Booked;
-import com.hotel.booking.domain.Room;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

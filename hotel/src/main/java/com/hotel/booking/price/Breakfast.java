@@ -1,8 +1,6 @@
 package com.hotel.booking.price;
 
-/**
- * Created by dkotenko on 11/12/18.
- */
+
 public class Breakfast extends AdditionalOption {
     PriceForDay priceForDay;
 

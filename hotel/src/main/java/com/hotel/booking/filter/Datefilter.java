@@ -3,7 +3,6 @@ package com.hotel.booking.filter;
 import com.hotel.booking.domain.Room;
 import com.hotel.booking.repos.RoomRepo;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class Datefilter {
@@ -11,6 +10,7 @@ public class Datefilter {
     private RoomRepo roomRepo;
 
     public Datefilter(){}
+
     public Datefilter(RoomRepo roomRepo){
         this.roomRepo = roomRepo;
     }

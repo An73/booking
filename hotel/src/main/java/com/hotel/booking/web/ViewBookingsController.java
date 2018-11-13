@@ -37,9 +37,6 @@ public class ViewBookingsController {
 
         users = (List<User>)userRepo.findAll();
         model.put("users", users);
-        //Iterable<RoomPrice> rooms = roomRepo.findAll();
-        //model.put("rooms", rooms);
-        //a++;
         return "viewbook";
     }
 

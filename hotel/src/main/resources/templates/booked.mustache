@@ -1,5 +1,24 @@
 <html xmlns="http://www.w3.org/1999/html">
 <body>
+<table align="center">
+    <tr>
+        <td>
+            <form>
+                <input type="button" onclick="location.href='/create'" value="Create User" />
+            </form>
+        </td>
+        <td>
+            <form>
+                <input type="button" onclick="location.href='/'" value="Main" />
+            </form>
+        </td>
+        <td>
+            <form>
+                <input type="button" onclick="location.href='/viewbook'" value="View Bookings" />
+            </form>
+        </td>
+    </tr>
+</table>
 <form method="post" action="/booked/datefilter">
     <table align="center">
         <tr>
@@ -57,7 +76,7 @@
     </table>
 
 
-    <table align="center">
+    <table align="center" bgcolor="#F0FFF0">
         <tr align="center">
             <td>Check in</td>
             <td>Check out</td>
@@ -78,7 +97,7 @@
     </table>
 {{/total}}
 
-<table align="center">
+<table align="center" bgcolor="#ffcc00">
     {{#r}}
     <thead>
         <th>Number</th>
@@ -89,7 +108,7 @@
     </thead>
     {{/r}}
     {{#rooms}}
-        <tr>
+        <tr align="center">
             <td>{{numb}}</td>
             <td>{{category}}</td>
             <td>{{price}} $</td>
@@ -110,7 +129,7 @@
 
 {{#booked}}
     <div align="center">Room successfully booked</div>
-    <table align="center">
+    <table align="center" bgcolor="#40e0d0">
         <tr>
             <td>Number Room</td>
             <td>{{number_room}}</td>

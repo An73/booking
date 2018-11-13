@@ -26,7 +26,7 @@ Instruction to launch the application
   java -version
   ```
   If you get nothing. Try to install it.
-  Clone the project. At the root of the cloned project type next:
+  Clone the project. At the folder "hotel" of the cloned project type next:
   ``` 
   mvn package
   ```

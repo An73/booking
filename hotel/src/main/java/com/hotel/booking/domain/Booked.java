@@ -23,7 +23,7 @@ public class Booked {
     private Date check_in;
 
     @Column(name = "check_out")
-    private Date chech_out;
+    private Date check_out;
 
     @Column(name = "user")
     private String user;
@@ -56,11 +56,11 @@ public class Booked {
     }
 
     public Date getChech_out() {
-        return chech_out;
+        return check_out;
     }
 
     public void setChech_out(Date chech_out) {
-        this.chech_out = chech_out;
+        this.check_out = chech_out;
     }
 
     public String getUser() {

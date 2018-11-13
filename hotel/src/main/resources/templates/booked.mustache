@@ -78,15 +78,17 @@
     </table>
 {{/total}}
 
-{{#rooms}}
 <table align="center">
-    <tr>
+    {{#r}}
+    <thead>
         <th>Number</th>
         <th>Category</th>
         <th>Price</th>
         <th>Breakfast (3 $)</th>
         <th>Cleaning (1 $)</th>
-    </tr>
+    </thead>
+    {{/r}}
+    {{#rooms}}
         <tr>
             <td>{{numb}}</td>
             <td>{{category}}</td>
@@ -103,8 +105,8 @@
                 </td>
             </form>
         </tr>
+    {{/rooms}}
 </table>
-{{/rooms}}
 
 {{#booked}}
     <div align="center">Room successfully booked</div>

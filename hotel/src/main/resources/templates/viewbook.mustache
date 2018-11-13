@@ -1,0 +1,43 @@
+<html>
+<body>
+<table align="center">
+    <tr>
+        <form method="post" action="/viewbook/user">
+        <td>
+            <select name="nickname">
+                {{#users}}
+                    <option value={{nickname}}>{{nickname}}</option>
+                {{/users}}
+            </select>
+        </td>
+        <td>
+            <button type="submit" >View by user</button>
+        </td>
+        </form>
+        <form method="post" action="/viewbook/all">
+            <td>
+                <button type="submit">View all users</button>
+            </td>
+        </form>
+    </tr>
+</table>
+
+{{#booked}}
+    <table align="center">
+        <tr>
+            <td>Number Room</td>
+            <td>Additional option</td>
+            <td>Total Price</td>
+            <td>User</td>
+        </tr>
+        <tr>
+            <td>{{numb}}</td>
+            <td>{{addition_option}}</td>
+            <td>{{totalprice}} $</td>
+            <td>{{user}}</td>
+        </tr>
+    </table>
+{{/booked}}
+
+</body>
+</html>

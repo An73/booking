@@ -61,6 +61,7 @@ public class BookedController {
         rooms = datefilter.filtrate(check_in, check_out);
         dateCheckIn = check_in;
         dateCheckOut = check_out;
+        model.put("r", true);
         model.put("rooms", rooms);
 
         return "booked";
@@ -75,7 +76,7 @@ public class BookedController {
         else{
             rooms.removeIf(r -> !r.getCategory().equals(category) ||
                     (price != null && r.getPrice() > price));
-
+            model.put("r", true);
             model.put("rooms", rooms);
         }
         return "booked";
@@ -112,6 +113,7 @@ public class BookedController {
         model.put("number_room", number);
         model.put("totalprice", total);
         model.put("total", true);
+        model.put("r", true);
         model.put("rooms", rooms);
 
 

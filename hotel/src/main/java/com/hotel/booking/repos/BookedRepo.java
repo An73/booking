@@ -1,6 +1,7 @@
 package com.hotel.booking.repos;
 
 import com.hotel.booking.domain.Booked;
+import com.hotel.booking.domain.Room;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 public interface BookedRepo extends CrudRepository<Booked, Long> {
     @Modifying
@@ -21,4 +23,6 @@ public interface BookedRepo extends CrudRepository<Booked, Long> {
                       @Param("addition") String addition,
                       @Param("totalprice") int totalprice,
                       @Param("user") String user);
+    List<Booked> findByUser(String user);
+    List<Booked> findAll();
 }

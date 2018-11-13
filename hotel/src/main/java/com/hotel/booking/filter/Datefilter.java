@@ -19,9 +19,6 @@ public class Datefilter {
         Iterable<Room> roomsBooked;
         List<Room> rooms = null;
 
-        if (roomRepo == null)
-            return null;
-
         if (check_in != null && check_out != null &&
                 check_in.after(today) && check_out.after(today) &&
                 (check_out.after(check_in) || check_in.equals(check_out))) {
@@ -29,16 +26,9 @@ public class Datefilter {
             roomsBooked = roomRepo.findC(check_in, check_out);
             rooms = (List<Room>) roomRepo.findAll();
 
-            Iterator<Room> roomB = roomsBooked.iterator();
-            while (roomB.hasNext()){
-                rooms.removeIf(room1 -> roomB.next().getNumb() == room1.getNumb());
+            for (Room aRoomsBooked : roomsBooked) {
+                rooms.removeIf(room1 -> aRoomsBooked.getNumb() == room1.getNumb());
             }
-            /*for (Room roomB : roomsBooked) {
-                for (Room room : rooms) {
-                    if (roomB.getNumb() == room.getNumb())
-                        rooms.remove(room);
-                }
-            }*/
         }
         return rooms;
     }
